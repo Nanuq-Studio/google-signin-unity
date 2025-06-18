@@ -89,7 +89,7 @@ namespace Google.Impl
       var httpListener = BindLocalHostFirstAvailablePort();
       try
       {
-        var query = new HttpUtility.ParseQueryString(string.Empty);
+        var query = HttpUtility.ParseQueryString(string.Empty);
         query["client_id"] = configuration.WebClientId;
         query["redirect_uri"] = httpListener.Prefixes.FirstOrDefault();
         query["response_type"] = "code";
