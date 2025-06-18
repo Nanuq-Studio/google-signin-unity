@@ -138,9 +138,8 @@ namespace Google.Impl
             return JObject.Parse(task.Result);
           },taskScheduler);
 
-          Debug.Log(jobj.ToString());
-
           var accessToken = (string)jobj.GetValue("access_token");
+          user.AccessToken = accessToken;
           var expiresIn = (int)jobj.GetValue("expires_in");
           var scope = (string)jobj.GetValue("scope");
           var tokenType = (string)jobj.GetValue("token_type");
