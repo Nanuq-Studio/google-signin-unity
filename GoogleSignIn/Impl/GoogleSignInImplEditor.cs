@@ -98,7 +98,7 @@ namespace Google.Impl
           "email",
           "profile"
         }));
-        var openUrl = new UriBuilder("https://accounts.google.com/o/oauth2/v2/auth")
+        var openURL = new UriBuilder("https://accounts.google.com/o/oauth2/v2/auth")
         {
           Query = query.ToString()
         }.ToString();
