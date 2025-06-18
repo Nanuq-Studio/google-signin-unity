@@ -93,7 +93,7 @@ namespace Google.Impl
           "email",
           "profile"
         }));
-        var openURL = "https://accounts.google.com/o/oauth2/v2/auth?" + Uri.EscapeUriString($"scope={scopes}&response_type=code&redirect_uri={httpListener.Prefixes.FirstOrDefault()}&client_id={configuration.WebClientId}");
+        var openURL = "https://accounts.google.com/o/oauth2/v2/auth?" + Uri.EscapeDataString($"scope={scopes}&response_type=code&redirect_uri={httpListener.Prefixes.FirstOrDefault()}&client_id={configuration.WebClientId}");
         Debug.Log(openURL);
         Application.OpenURL(openURL);
       }
