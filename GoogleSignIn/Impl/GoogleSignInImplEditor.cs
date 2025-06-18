@@ -139,12 +139,12 @@ namespace Google.Impl
           },taskScheduler);
 
           var accessToken = (string)jobj.GetValue("access_token");
-          user.AccessToken = accessToken;
           var expiresIn = (int)jobj.GetValue("expires_in");
           var scope = (string)jobj.GetValue("scope");
           var tokenType = (string)jobj.GetValue("token_type");
 
           var user = new GoogleSignInUser();
+          user.AccessToken = accessToken;
           if(configuration.RequestAuthCode)
             user.AuthCode = code;
 
