@@ -88,12 +88,19 @@ namespace Google.Impl
       var httpListener = BindLocalHostFirstAvailablePort();
       try
       {
-        var scopes = Uri.EscapeDataString(string.Join(" ", configuration.AdditionalScopes.Union(new string[] {
+        var query = new HttpUtility.ParseQueryString(string.Empty);
+        query["client_id"] = configuration.WebClientId;
+        query["redirect_uri"] = httpListener.Prefixes.FirstOrDefault();
+        query["response_type"] = "code";
+        query["scope"] = string.Join(" ", configuration.AdditionalScopes.Union(new string[] {
           "openid",
           "email",
           "profile"
-        })));
-        var openURL = "https://accounts.google.com/o/oauth2/v2/auth?" + Uri.EscapeUriString($"scope={scopes}&response_type=code&redirect_uri={httpListener.Prefixes.FirstOrDefault()}&client_id={configuration.WebClientId}");
+        }));
+        var openUrl = new Uribuilder("https://accounts.google.com/o/oauth2/v2/auth")
+        {
+          Query = query.ToString()
+        }.ToString();
         Debug.Log(openURL);
         Application.OpenURL(openURL);
       }
