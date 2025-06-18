@@ -93,6 +93,7 @@ namespace Google.Impl
         query["client_id"] = configuration.WebClientId;
         query["redirect_uri"] = httpListener.Prefixes.FirstOrDefault();
         query["response_type"] = "code";
+        query["access_type"] = configuration.ForceTokenRefresh ? "offline" : "online";
         query["scope"] = string.Join(" ", configuration.AdditionalScopes.Union(new string[] {
           "openid",
           "email",
